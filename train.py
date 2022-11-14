@@ -4,6 +4,7 @@ import torch
 import os
 import cv2
 import sklearn
+import pickle
 from sklearn.model_selection import train_test_split
 from torchvision.datasets import mnist
 from torch.nn import CrossEntropyLoss
@@ -65,4 +66,5 @@ if __name__ == '__main__':
             all_sample_num += current_correct_num.shape[0]
         acc = all_correct_num / all_sample_num
         print('accuracy: {:.2f}'.format(acc))
-        torch.save(model, 'models/mnist_{:.2f}.pkl'.format(acc))
+
+        pickle.dump(model, open("models/mnist_{:.2f}".format(acc), "wb"))

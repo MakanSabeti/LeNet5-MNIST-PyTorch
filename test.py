@@ -11,8 +11,5 @@ from torch.optim import SGD
 from torch.utils.data import DataLoader
 from torchvision.transforms import ToTensor
 
-
-mnist_99 = open(os.path.join((os.getcwd() +'\models\mnist_0.99.pkl')), encoding="utf8")
-data = pickle.load(mnist_99)
-
-# test = pickle.load(open('models\mnist_0.99.pkl','rb'))
+with open('models/mnist_0.98', "rb") as payload_file:
+    model = pickle.load(payload_file)
