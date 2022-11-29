@@ -40,13 +40,15 @@ if __name__ == '__main__':
     train_loader = DataLoader(train_dataset, batch_size=batch_size)
     test_loader = DataLoader(test_dataset, batch_size=batch_size)
     model = Model()
-    sgd = SGD(model.parameters(), lr=1e-1)
+    sgd = torch.optim.Adam(model.parameters())
     loss_fn = CrossEntropyLoss()
     all_epoch = 100
 
     for current_epoch in range(all_epoch):
         model.train()
         for idx, (train_x, train_label) in enumerate(train_loader):
+            # train_x.size(): torch.Size([256, 1, 28, 28])
+            # train_label.size(): torch.Size([256])
             sgd.zero_grad()
             predict_y = model(train_x.float())
             loss = loss_fn(predict_y, train_label.long())
